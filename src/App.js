@@ -1,27 +1,23 @@
-import { useContext } from "react";
-import Kosar from "./components/Kosar";
-import Vasarloter from "./components/Vasarloter";
-import { ApiContext } from "./context/ApiContext";
-import { KosarContext } from "./context/KosarContext";
+import Admin from "./pages/Admin.js";
+import Public from "./pages/Public.js";
+import Layout from "./pages/Layout";
+import NoPage from "./pages/NoPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const { termekLista } = useContext(ApiContext);
-  const { kosarLista } = useContext(KosarContext);
-
   return (
     <div className="container">
-      <header>
-        <h1>Store webáruház</h1>
-      </header>
-      <main className="row">
-        <article className="col-lg-8">
-          <h4>Vásárlótér</h4>
-          <Vasarloter termekLista={termekLista} />
-        </article>
-        <aside className="col-lg-4">
-          <h4>Kosár</h4>
-          <Kosar kosarLista={kosarLista} />
-        </aside>
+      <header></header>
+      <main>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="public" element={<Public />} />
+              <Route path="admin" element={<Admin />} />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </main>
     </div>
   );

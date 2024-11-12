@@ -4,7 +4,7 @@ function Kosar({ kosarLista }) {
   return (
     <div>
       {kosarLista.map((elem) => {
-        <KosarTermek key={elem.id} elem={elem} />;
+        return <KosarTermek key={elem.id} elem={elem} />;
       })}
     </div>
   );
